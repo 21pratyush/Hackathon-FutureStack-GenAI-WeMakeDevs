@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data-Genie</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Inter:400,700|Montserrat:400,700|Fira+Mono&display=swap" />
+    <style>
+        body {
+            font-family: 'Montserrat', 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Montserrat', 'Inter', sans-serif;
+        }
+
+        .micro-anim {
+            transition: box-shadow 0.2s, transform 0.2s, background 0.2s, border-color 0.2s;
+        }
+
+        .micro-anim:active {
+            transform: scale(0.97);
+        }
+
+        .micro-anim:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            background: #f8fafc;
+        }
+
+        .modal-anim {
+            animation: modalFadeIn 0.25s cubic-bezier(.4, 0, .2, 1);
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.96);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .table-anim tr {
+            transition: background 0.18s;
+        }
+
+        .table-anim tr:hover {
+            background: #f3f4f6;
+        }
+
+        /* Modal Table: styling now handled by Tailwind and inline styles in JS */
+
+        /* Custom table styling for reference image */
+        .custom-table {
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .custom-table th {
+            background: #e5e7eb;
+            font-weight: 700;
+            text-align: center;
+            border-bottom: 2px solid #d1d5db;
+            padding: 10px 0;
+            font-size: 1rem;
+        }
+
+        .custom-table td {
+            border-bottom: 2px solid #d1d5db;
+            text-align: center;
+            padding: 8px 0;
+            font-size: 1rem;
+        }
+
+        .custom-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .grid-background {
+            background-image: linear-gradient(to right, rgba(139, 139, 139, 0.089) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(139, 139, 139, 0.089) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen flex flex-col items-center justify-start py-8 font-inter">
+    <!-- Landing Section -->
+    <section class="w-full py-20 px-4 flex flex-col items-center text-center grid-background">
+
+        <p class="text-xs font-semibold text-gray-400 tracking-widest uppercase mb-4">
+            THE INTELLIGENT MOCK DATA TOOL FOR <span class="text-orange-500">DEV TEAMS</span>
+        </p>
+
+        <h1 class="text-6xl md:text-7xl font-extrabold tracking-tighter max-w-4xl mb-6"
+            style="color: white; -webkit-text-stroke: 0.5px #ff5e006e;">
+            Generate your data with <span class="text-orange-500" style="color: #ff8c00; -webkit-text-stroke: 0;">AI
+                intent</span> signals
+        </h1>
+
+        <p class="text-lg text-gray-400 max-w-2xl mb-12">
+            Define schemas effortlessly, find real-world data patterns, and build realistic datasets for testing and
+            demos using the power of Generative AI.
+        </p>
+
+        <div class="flex space-x-4 mb-16">
+            <button id="generateBtnLanding"
+                class="bg-orange-500 hover:bg-orange-600 text-white hover:text-gray-600 px-8 py-3 rounded-lg font-bold shadow-lg transition-all micro-anim flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-sparkles-icon lucide-sparkles">
+                    <path
+                        d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" />
+                </svg>
+                Start Generating Now
+            </button>
+
+            <button id="exploreTemplatesBtn"
+                class="bg-transparent border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-gray-900 px-8 py-3 rounded-lg font-semibold transition-all micro-anim">
+                Explore Templates
+            </button>
+        </div>
+
+        <div class="flex justify-center items-center">
+            <span class="text-gray-500 text-xs font-mono tracking-widest mr-2">
+                NOTE: DATA-GENIE IS
+                <span class="text-red-500 font-bold">
+                    NOT BACKED BY
+                </span>
+            </span>
+            <img src="https://imgs.search.brave.com/Jynam_oa_lozxWLQO2_4scdKb5RSVOpF9wLmN7SVyGE/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy90/aHVtYi9iL2IyL1lf/Q29tYmluYXRvcl9s/b2dvLnN2Zy8yNTBw/eC1ZX0NvbWJpbmF0/b3JfbG9nby5zdmcu/cG5n"
+                alt="Y Combinator" class="h-6" title="Y Combinator (Not Backed)">
+        </div>
+    </section>
+
+    <!-- Tool-Section -->
+    <div class="w-full max-w-5xl bg-white rounded-2xl shadow-lg p-8 flex flex-col gap-10 border border-gray-100">
+        <div class="flex flex-col items-center">
+            <p class="text-gray-400 text-md font-medium tracking-wide">
+                Your Three Wishes: <span class="text-orange-500 font-bold text-xl ml-2">Define -> Generate ->
+                    Export</span>
+            </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Left: LLM & Columns -->
+            <div
+                class="bg-gradient-to-br from-gray-50 via-white to-gray-100 rounded-xl border border-gray-200 p-7 flex flex-col gap-5 shadow-sm micro-anim">
+                <div class="flex gap-4 mb-2">
+                    <div id="providerGemini"
+                        class="relative flex flex-col items-center justify-center border-2 rounded-xl p-3 cursor-pointer micro-anim w-30 h-20">
+                        <img src="google-gemini-logo.webp" alt="Gemini" class="h-full w-full object-contain mb-1" />
+                        <button id="settingsGeminiBtn"
+                            class="absolute top-0 right-0 p-1 rounded-bl-xl rounded-tr-xl hover:bg-orange-50 bg-white bg-opacity-80 micro-anim"
+                            title="Set Gemini API Key">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-600 cursor-pointer"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10.325 4.317c.426-1.765 2.924-1.765 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.766.426 1.766 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.766-2.924 1.766-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.766-.426-1.766-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div id="providerCerebras"
+                        class="relative flex flex-col items-center justify-center border-2 rounded-xl p-3 cursor-pointer micro-anim w-30 h-20">
+                        <img src="Cerebras-Systems-Logo-Vector.webp" alt="Cerebras"
+                            class="h-full w-full object-contain mb-1" />
+                        <button id="settingsCerebrasBtn"
+                            class="absolute top-0 right-0 p-1 rounded-bl-xl rounded-tr-xl hover:bg-orange-50 bg-white bg-opacity-80 micro-anim"
+                            title="Set Cerebras API Key">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-600 cursor-pointer "
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10.325 4.317c.426-1.765 2.924-1.765 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.766.426 1.766 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.766-2.924 1.766-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.766-.426-1.766-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37a1.724 1.724 0 002.572-1.065z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between mb-2">
+                    <span class="font-semibold text-gray-700 tracking-wide text-base" title="Define your table">Table
+                        Schema</span>
+                    <button id="jsonSchemaBtn" class="p-1 rounded-md cursor-pointer micro-anim" title="JSON view">
+                        <span class="text-lg font-mono">{}</span>
+                    </button>
+                </div>
+                <div id="columnsList"
+                    class="flex gap-2 mb-2 max-h-60 overflow-y-auto overflow-y-auto whitespace-nowrap p-1 -m-1">
+
+                    <!-- Columns will be rendered here -->
+                </div>
+                <button id="addColumnBtn"
+                    class="w-full bg-gray-100 border border-gray-300 text-gray-700 py-2 rounded-md hover:bg-gray-200 transition flex items-center gap-2 justify-center cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 26 26" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-circle-fading-plus-icon lucide-circle-fading-plus">
+                        <path d="M12 2a10 10 0 0 1 7.38 16.75" />
+                        <path d="M12 8v8" />
+                        <path d="M16 12H8" />
+                        <path d="M2.5 8.875a10 10 0 0 0-.5 3" />
+                        <path d="M2.83 16a10 10 0 0 0 2.43 3.4" />
+                        <path d="M4.636 5.235a10 10 0 0 1 .891-.857" />
+                        <path d="M8.644 21.42a10 10 0 0 0 7.631-.38" />
+                    </svg>
+                </button>
+            </div>
+            <!-- Center: Controls -->
+            <div class="rounded-xl p-7 flex flex-col items-center gap-5 justify-center">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-database-icon lucide-database">
+                            <title>Number of Rows</title>
+                            <ellipse cx="12" cy="5" rx="9" ry="3" />
+                            <path d="M3 5V19A9 3 0 0 0 21 19V5" />
+                            <path d="M3 12A9 3 0 0 0 21 12" />
+                        </svg>
+                        <input id="quantityInput" type="number" min="1" max="100" value="20"
+                            class="border rounded px-2 py-1 w-16 text-center micro-anim" />
+                    </div>
+                    <button id="generateBtn"
+                        class="bg-orange-500 border border-orange-200 text-white hover:text-orange-700 px-4 py-2 rounded-md font-semibold shadow-sm micro-anim cursor-pointer flex items-center justify-center gap-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-sparkles-icon lucide-sparkles">
+                            <path
+                                d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" />
+                            <path d="M20 2v4" />
+                            <path d="M22 4h-4" />
+                            <circle cx="4" cy="20" r="2" />
+                        </svg>
+                        Generate
+                    </button>
+                </div>
+            </div>
+            <!-- Right: Generated Data -->
+            <div
+                class="bg-gradient-to-br from-gray-50 via-white to-gray-100 rounded-xl border border-gray-200 p-7 flex flex-col gap-3 min-h-[220px] shadow-sm micro-anim relative">
+                <!-- Open Icon -->
+                <button id="openTableModalBtn"
+                    class="absolute top-3 right-3 p-2 rounded-full hover:bg-gray-100 transition cursor-pointer micro-anim"
+                    title="Spreadsheet View">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-maximize2-icon lucide-maximize-2">
+                        <path d="M15 3h6v6" />
+                        <path d="m21 3-7 7" />
+                        <path d="m3 21 7-7" />
+                        <path d="M9 21H3v-6" />
+                    </svg>
+                </button>
+                <div id="outputTableWrapper" class="overflow-x-auto overflow-y-auto max-h-60 min-h-[120px] m-4">
+                    <table id="outputTable" class="min-w-full text-sm table-anim"></table>
+                </div>
+                <div id="emptyDataMsg" class="text-center text-gray-400 text-base font-mono tracking-wide">Add
+                    columns to generate data</div>
+                <button id="downloadCsvBtn"
+                    class="bg-gray-100 border border-gray-300 text-gray-700 px-3 py-2 rounded-md font-semibold shadow-sm micro-anim cursor-pointer flex items-center justify-center">
+                    Export to
+                    <img src="https://img.icons8.com/color/48/000000/csv.png" alt="CSV" class="ml-1 h-6 w-6">
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Templates-Section -->
+    <div id="templatesContainer" class="w-full max-w-5xl mt-8">
+        <h2 class="text-2xl font-bold mb-4">Templates</h2>
+        <div id="templatesGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+    </div>
+
+    <!-- Modals -->
+    <div id="modalOverlay" class="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50 hidden">
+        <div id="modalContent" class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+            <!-- Modal content will be injected here -->
+        </div>
+    </div>
+    <script src="data-generator.js"></script>
+</body>
+
+</html>
