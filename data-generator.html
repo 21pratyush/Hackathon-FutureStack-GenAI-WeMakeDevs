@@ -1,13 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Data-Genie</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23fb651e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-database-zap-icon lucide-database-zap'><ellipse cx='12' cy='5' rx='9' ry='3'/><path d='M3 5V19A9 3 0 0 0 15 21.84'/><path d='M21 5V8'/><path d='M21 12L18 17H22L19 22'/><path d='M3 12A9 3 0 0 0 14.59 14.87'/></svg>"
+        type="image/svg+xml">
+
+
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Inter:400,700|Montserrat:400,700|Fira+Mono&display=swap" />
+
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 1. Overall width/height of the scrollbar */
+        ::-webkit-scrollbar {
+            width: 4px;
+            /* For vertical scrollbar */
+            height: 2px;
+            /* For horizontal scrollbar */
+        }
+
+        /* 2. The track (the background area of the scrollbar) */
+        ::-webkit-scrollbar-track {
+            background: #ffff;
+            /* Light gray background */
+            border-radius: 20px;
+        }
+
+        /* 3. The thumb (the draggable part) */
+        ::-webkit-scrollbar-thumb {
+            background: #fb651e;
+            /* Your brand's orange color */
+            border-radius: 10px;
+        }
+
+        /* 4. Thumb on hover for better UX */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e5530e;
+            /* A slightly darker orange on hover */
+        }
+
         body {
             font-family: 'Montserrat', 'Inter', sans-serif;
         }
@@ -91,27 +130,95 @@
                 linear-gradient(to bottom, rgba(139, 139, 139, 0.089) 1px, transparent 1px);
             background-size: 50px 50px;
         }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-in-1 {
+            animation: slideIn 0.7s ease-out 0.2s backwards;
+        }
+
+        .animate-in-2 {
+            animation: slideIn 0.7s ease-out 0.4s backwards;
+        }
+
+        .animate-in-3 {
+            animation: slideIn 0.7s ease-out 0.6s backwards;
+        }
+
+        .animate-in-4 {
+            animation: slideIn 0.7s ease-out 0.8s backwards;
+        }
     </style>
 </head>
 
-<body class="bg-gray-50 min-h-screen flex flex-col items-center justify-start py-8 font-inter">
+<body class="bg-gray-50 min-h-screen flex flex-col items-center justify-start font-inter">
+    <nav class="sticky top-0 z-40 w-full bg-white bg-opacity-95 backdrop-blur-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="#" class="flex-shrink-0 ">
+                    <span class="text-2xl font-extrabold text-gray-900 tracking-tight">Data-<span
+                            class="text-orange-500">Genie</span></span>
+                </a>
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-8 items-baseline">
+                    <a href="#genie"
+                        class="text-gray-500 hover:text-orange-500 px-3 py-2 rounded-md text-sm font-medium transition-colors uppercase">
+                        Genie
+                    </a>
+                    <a href="#templatesContainer"
+                        class="text-gray-500 hover:text-orange-500 px-3 py-2 rounded-md text-sm font-medium transition-colors uppercase">
+                        Templates
+                    </a>
+                    <a href="https://pratyuxh.notion.site/PRATYUSH-PRAKHAR-24f28fe920348089917cd3a9b7d4a12c"
+                        class="text-gray-500 hover:text-orange-500 px-3 py-2 rounded-md text-sm font-medium transition-colors uppercase flex items-end space-x-2"
+                        target="_blank">
+                        made by
+                        <img class="ml-2 w-6 rounded-full ring-2 ring-white hover:w-8 hover:h-8 transition-all duration-200"
+                            src="Pratyush_img.jpg" alt="Pratyush Prakhar">
+                    </a>
+                </div>
+
+                <div class="flex justify-center items-end">
+                    <span class="text-gray-500 text-xs font-mono tracking-widest mr-2">
+                        <span class="text-gray-400 font-semibold">
+                            NOT BACKED BY
+                        </span>
+                    </span>
+                    <a href="https://www.ycombinator.com/" target="_blank" rel="noopener noreferrer">
+                        <img src="https://imgs.search.brave.com/Jynam_oa_lozxWLQO2_4scdKb5RSVOpF9wLmN7SVyGE/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy90/aHVtYi9iL2IyL1lf/Q29tYmluYXRvcl9s/b2dvLnN2Zy8yNTBw/eC1ZX0NvbWJpbmF0/b3JfbG9nby5zdmcu/cG5n"
+                            alt="Y Combinator" class="h-6" title="Y Combinator (Not Backed)">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
     <!-- Landing Section -->
     <section class="w-full py-20 px-4 flex flex-col items-center text-center grid-background">
 
-        <p class="text-xs font-semibold text-gray-400 tracking-widest uppercase mb-4">
-            THE INTELLIGENT MOCK DATA TOOL FOR <span class="text-orange-500">DEV TEAMS</span>
+        <p class="text-xs font-semibold bg-gray-50 text-gray-400 tracking-widest uppercase mb-12 animate-in-3">
+            If Your Data Looks Generic, Your Product Feels Generic ; <span class="text-orange-500">Build with
+                Confidence.</span>
         </p>
 
-        <h1 class="text-6xl md:text-7xl font-extrabold tracking-tighter max-w-4xl mb-6"
-            style="color: white; -webkit-text-stroke: 0.5px #ff5e006e;">
-            Generate your data with <span class="text-orange-500" style="color: #ff8c00; -webkit-text-stroke: 0;">AI
-                intent</span> signals
+        <h1 class="md:text-6xl font-extrabold tracking-tighter max-w-4xl mb-6"
+            style="color: white; -webkit-text-stroke: 1px #7979796e;">
+            From <span class="text-orange-500" style="color: #666666; -webkit-text-stroke: 0;"> Table Schema
+            </span><br>to<br><span class="text-orange-500" style="color: #666666; -webkit-text-stroke: 0;">Mock
+                Data</span> in Seconds
         </h1>
 
-        <p class="text-lg text-gray-400 max-w-2xl mb-12">
-            Define schemas effortlessly, find real-world data patterns, and build realistic datasets for testing and
-            demos using the power of Generative AI.
-        </p>
+        <p class="text-lg text-gray-400 max-w-2xl mt-8 mb-12 bg-gray-50">
+            Why are you populating databases with "John Doe" and "test@email.com"? Generic data introduces bugs, breaks
+            UI layouts, and makes stakeholder demos look unprofessional. </p>
 
         <div class="flex space-x-4 mb-16">
             <button id="generateBtnLanding"
@@ -122,33 +229,28 @@
                     <path
                         d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" />
                 </svg>
-                Start Generating Now
+                <a href="#genie">
+                    Start Generating Now
+                </a>
             </button>
 
             <button id="exploreTemplatesBtn"
-                class="bg-transparent border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-gray-900 px-8 py-3 rounded-lg font-semibold transition-all micro-anim">
-                Explore Templates
+                class="bg-transparent border border-orange-500 text-orange-500 hover:bg-white hover:text-orange-500 px-8 py-3 rounded-lg font-semibold transition-all">
+                <a href="#templatesContainer">
+                    Explore Templates
+                </a>
             </button>
-        </div>
-
-        <div class="flex justify-center items-center">
-            <span class="text-gray-500 text-xs font-mono tracking-widest mr-2">
-                NOTE: DATA-GENIE IS
-                <span class="text-red-500 font-bold">
-                    NOT BACKED BY
-                </span>
-            </span>
-            <img src="https://imgs.search.brave.com/Jynam_oa_lozxWLQO2_4scdKb5RSVOpF9wLmN7SVyGE/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy90/aHVtYi9iL2IyL1lf/Q29tYmluYXRvcl9s/b2dvLnN2Zy8yNTBw/eC1ZX0NvbWJpbmF0/b3JfbG9nby5zdmcu/cG5n"
-                alt="Y Combinator" class="h-6" title="Y Combinator (Not Backed)">
         </div>
     </section>
 
     <!-- Tool-Section -->
-    <div class="w-full max-w-5xl bg-white rounded-2xl shadow-lg p-8 flex flex-col gap-10 border border-gray-100">
+    <div id="genie"
+        class="w-full max-w-5xl bg-white rounded-2xl shadow-lg p-18 flex flex-col gap-10 border border-gray-100">
         <div class="flex flex-col items-center">
             <p class="text-gray-400 text-md font-medium tracking-wide">
-                Your Three Wishes: <span class="text-orange-500 font-bold text-xl ml-2">Define -> Generate ->
-                    Export</span>
+                Your Three Wishes:
+                <span class="text-orange-500 font-bold text-xl ml-2">
+                    Define -> Generate -> Export</span>
             </p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -277,7 +379,7 @@
     </div>
 
     <!-- Templates-Section -->
-    <div id="templatesContainer" class="w-full max-w-5xl mt-8">
+    <div id="templatesContainer" class="pt-18 w-full max-w-5xl mt-8">
         <h2 class="text-2xl font-bold mb-4">Templates</h2>
         <div id="templatesGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
     </div>
@@ -290,5 +392,116 @@
     </div>
     <script src="data-generator.js"></script>
 </body>
+<footer>
+    <!-- Background is retained as requested: bg-gray-50 -->
+    <div class="bg-gray-50 text-gray-700 mt-10">
+        <div class="max-w-6xl mx-auto px-6 py-12 md:py-16">
+            <!-- Top Section: Grid Layout for Info and Links -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 pb-10 border-t border-gray-200 py-8">
+
+                <!-- Column 1: Project Identity -->
+                <div class="md:col-span-2 space-y-4">
+                    <!-- Text color changed to dark gray for contrast on light background -->
+                    <h3 class="text-2xl font-extrabold text-gray-900 tracking-tight flex items-center">
+                        <!-- Project Icon remains the same orange -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="#fb651e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-database-zap-icon lucide-database-zap mr-2">
+                            <ellipse cx="12" cy="5" rx="9" ry="3" />
+                            <path d="M3 5V19A9 3 0 0 0 15 21.84" />
+                            <path d="M21 5V8" />
+                            <path d="M21 12L18 17H22L19 22" />
+                            <path d="M3 12A9 3 0 0 0 14.59 14.87" />
+                        </svg>
+                        Data-Genie
+                    </h3>
+                    <!-- Body text color adjusted to gray-700 for readability -->
+                    <p class="text-base leading-relaxed text-gray-700">
+                        This project was built during the
+                        <a href="https://www.wemakedevs.org/hackathons/futurestack25" target="_blank"
+                            rel="noopener noreferrer"
+                            class="text-orange-600 hover:text-orange-700 font-semibold transition-colors">
+                            FutureStack 25 Hackathon
+                        </a> organized by WeMakeDevs.
+                    </p>
+                    <p class="text-sm italic pt-2 text-gray-600 flex items-center">
+                        <span class="mr-2">⚡️</span> Crafted with <span class="font-bold ml-1 mr-1">Vibe Coding</span>
+                        and experienced
+                        <span class="underline ml-1"> Product Builder expertise</span>.
+                    </p>
+                </div>
+
+                <!-- Column 2: Developer Contact -->
+                <div class="space-y-4">
+                    <!-- Heading color changed to dark gray -->
+                    <h4 class="text-lg font-bold text-gray-900 mb-2 uppercase tracking-wider">Developer</h4>
+                    <p class="text-lg font-semibold text-gray-800 flex items-center">
+                        <span class="mr-2">👨‍💻</span> Pratyush Prakhar
+                    </p>
+                    <nav class="flex items-baseline gap-6 space-y-2">
+                        <!-- Links with Icons -->
+                        <a href="https://pratyuxh.notion.site/PRATYUSH-PRAKHAR-24f28fe920348089917cd3a9b7d4a12c"
+                            target="_blank" rel="noopener noreferrer"
+                            class="block text-sm text-gray-600 hover:text-orange-600 transition-colors flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="#fb651e" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-wallpaper-icon lucide-wallpaper">
+                                <path d="M12 17v4" />
+                                <path d="M8 21h8" />
+                                <path d="m9 17 6.1-6.1a2 2 0 0 1 2.81.01L22 15" />
+                                <circle cx="8" cy="9" r="2" />
+                                <rect x="2" y="3" width="20" height="14" rx="2" />
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/public-profile/settings" target="_blank"
+                            rel="noopener noreferrer"
+                            class="block text-sm text-gray-600 hover:text-orange-600 transition-colors flex items-center">
+                            <img class="h-6 w-6"
+                                src="https://imgs.search.brave.com/SRoSW3a3jGb1blF-ajqrGk2tigTXqVoG_Pzw7aYnnuM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS12ZWN0/b3IvbGlua2VkaW4t/c3F1YXJlLWxvZ28t/dmVjdG9yXzY2Nzg2/NC0xMTUuanBnP3Nl/bXQ9YWlzX2h5YnJp/ZCZ3PTc0MCZxPTgw"
+                                alt="linkedin" srcset="">
+                        </a>
+                        <a href="https://x.com/PPrakhar43083" target="_blank" rel="noopener noreferrer"
+                            class="block text-sm text-gray-600 hover:text-orange-600 transition-colors flex items-center">
+                            <img class="h-6 w-6"
+                                src="https://imgs.search.brave.com/qKm6Bkijf_3LDlP_D8MUg1pKM1YQ-efnni7jyIPaEXc/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9wbGF5/LWxoLmdvb2dsZXVz/ZXJjb250ZW50LmNv/bS9BLVJucmgwSjdp/S21BQnNrVG9ucUZB/QU5STEdUR1VnX251/RTRQRU1Zd0phdkwz/blB0NXVXc1UyV09f/RFNnVl9tT09N"
+                                alt="X" srcset="">
+                        </a>
+                        <a href="https://www.producthunt.com/@pratyush_prakhar" target="_blank"
+                            rel="noopener noreferrer"
+                            class="block text-sm text-gray-600 hover:text-orange-600 transition-colors flex items-center">
+                            <img class="h-6 w-6"
+                                src="https://imgs.search.brave.com/PsGG9tHNRJ2iwCTnJF8Dmpav0sNWsMHDIZpdjNfPgLc/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly91eHdp/bmcuY29tL3dwLWNv/bnRlbnQvdGhlbWVz/L3V4d2luZy9kb3du/bG9hZC9icmFuZHMt/YW5kLXNvY2lhbC1t/ZWRpYS9wcm9kdWN0/LWh1bnQtbG9nby1p/Y29uLnBuZw"
+                                alt="Product_Hunt" srcset="">
+                        </a>
+                    </nav>
+                </div>
+
+                <!-- Column 3: Quick Contact -->
+                <div class="space-y-4">
+                    <!-- Heading color changed to dark gray -->
+                    <h4 class="text-lg font-bold text-gray-900 mb-2 uppercase tracking-wider">Get in Touch</h4>
+                    <!-- Link with Icon -->
+                    <a href="mailto:pratyush.prakharcorp@gmail.com"
+                        class="block text-sm text-gray-600 hover:text-orange-600 transition-colors flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-mail mr-2">
+                            <rect width="20" height="16" x="2" y="4" rx="2" />
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                        </svg>
+                        pratyush.prakharcorp@gmail.com
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bottom Section: Copyright & Legal -->
+            <div class="pt-8 text-center text-gray-600">
+                <p class="text-sm" id="copyrightYear">&copy; Data-Genie. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
 
 </html>

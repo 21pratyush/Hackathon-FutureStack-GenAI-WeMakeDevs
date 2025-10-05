@@ -243,6 +243,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
 // Modal for table view
 document.addEventListener("DOMContentLoaded", function () {
+  // Set current year in footer
+  const yearElement = document.getElementById("copyrightYear");
+  if (yearElement) {
+    const currentYear = new Date().getFullYear();
+    yearElement.innerHTML = `&copy; ${currentYear} Data-Genie. All rights reserved.`;
+  }
   const openTableModalBtn = document.getElementById("openTableModalBtn");
   const outputTable = document.getElementById("outputTable");
   const downloadCsvBtn = document.getElementById("downloadCsvBtn");
