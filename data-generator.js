@@ -15,47 +15,190 @@ let generatedData = [];
 // Templates
 const TEMPLATES = [
   {
-    name: "Product Catalog",
+    name: "E-commerce Product Catalog",
+    cta: "Generate realistic product listings for your store or demo marketplace.",
     tableName: "products",
     columns: [
-      { name: "id", description: "Unique product ID" },
-      { name: "name", description: "Product name" },
-      { name: "price", description: "Numeric value of the product" },
-      { name: "category", description: "Category of product" },
-      { name: "in_stock", description: "Boolean availability flag" },
+      {
+        name: "id",
+        description: "A unique product identifier (e.g., PROD12345)",
+      },
+      {
+        name: "name",
+        description:
+          "Descriptive product title such as 'Wireless Headphones' or 'Smartwatch Pro X'",
+      },
+      {
+        name: "description",
+        description:
+          "Detailed overview of the product’s features, material, and highlights",
+      },
+      {
+        name: "price",
+        description: "Numeric price value in USD or your chosen currency",
+      },
+      {
+        name: "discount",
+        description: "Percentage discount applied on the product (if any)",
+      },
+      {
+        name: "category",
+        description:
+          "Primary classification such as 'Electronics', 'Fashion', 'Home Decor'",
+      },
+      {
+        name: "in_stock",
+        description:
+          "Boolean indicating whether the product is currently available",
+      },
+      {
+        name: "rating",
+        description: "Average customer rating out of 5 based on reviews",
+      },
+      {
+        name: "created_at",
+        description: "Timestamp when the product was added to the catalog",
+      },
     ],
   },
   {
     name: "User Profiles",
+    cta: "Simulate user accounts for onboarding, dashboard, or CRM demos.",
     tableName: "users",
     columns: [
-      { name: "id", description: "Unique user identifier" },
-      { name: "full_name", description: "User’s full name" },
-      { name: "email", description: "User’s email address" },
-      { name: "age", description: "User’s age" },
-      { name: "country", description: "User’s country" },
+      { name: "id", description: "Unique identifier for each registered user" },
+      {
+        name: "full_name",
+        description: "User’s complete name, typically first and last",
+      },
+      {
+        name: "email",
+        description: "User’s unique email address used for login or contact",
+      },
+      { name: "age", description: "Age in numeric format (e.g., 29)" },
+      {
+        name: "gender",
+        description: "User’s gender identity (Male/Female/Other)",
+      },
+      {
+        name: "country",
+        description: "Country of residence (e.g., India, USA, Germany)",
+      },
+      {
+        name: "signup_date",
+        description: "Timestamp of account creation or registration",
+      },
+      {
+        name: "is_verified",
+        description:
+          "Boolean flag indicating whether the user’s email is verified",
+      },
     ],
   },
   {
-    name: "Order Records",
+    name: "Order Transactions",
+    cta: "Instantly populate mock order histories for e-commerce or payment apps.",
     tableName: "orders",
     columns: [
-      { name: "order_id", description: "Unique order number" },
-      { name: "user_id", description: "Associated user ID" },
-      { name: "total_amount", description: "Total bill amount" },
-      { name: "payment_status", description: "Paid / Pending / Failed" },
-      { name: "created_at", description: "Order creation timestamp" },
+      {
+        name: "order_id",
+        description: "Unique order reference ID (e.g., ORD-90871)",
+      },
+      { name: "user_id", description: "Linked user ID who placed the order" },
+      {
+        name: "product_id",
+        description: "Associated product identifier purchased in the order",
+      },
+      {
+        name: "quantity",
+        description: "Number of items ordered for that product",
+      },
+      {
+        name: "total_amount",
+        description: "Total payable amount for this order (price × quantity)",
+      },
+      {
+        name: "payment_method",
+        description:
+          "Mode of payment such as 'Credit Card', 'UPI', or 'PayPal'",
+      },
+      {
+        name: "payment_status",
+        description: "Payment outcome - 'Paid', 'Pending', or 'Failed'",
+      },
+      {
+        name: "shipping_status",
+        description:
+          "Order progress - 'Shipped', 'In Transit', 'Delivered', etc.",
+      },
+      {
+        name: "created_at",
+        description: "Date and time when the order was created",
+      },
     ],
   },
   {
-    name: "Order Records",
-    tableName: "orders",
+    name: "Marketing Subscribers",
+    cta: "Generate email subscriber lists for newsletters or product launch testing.",
+    tableName: "subscribers",
     columns: [
-      { name: "order_id", description: "Unique order number" },
-      { name: "user_id", description: "Associated user ID" },
-      { name: "total_amount", description: "Total bill amount" },
-      { name: "payment_status", description: "Paid / Pending / Failed" },
-      { name: "created_at", description: "Order creation timestamp" },
+      { name: "id", description: "Unique subscriber identifier" },
+      {
+        name: "email",
+        description: "Subscriber’s email address for marketing campaigns",
+      },
+      {
+        name: "first_name",
+        description:
+          "Subscriber’s first name (useful for personalized messages)",
+      },
+      {
+        name: "signup_source",
+        description:
+          "Origin of signup - 'Website Popup', 'Landing Page', 'Social Media Ad'",
+      },
+      {
+        name: "subscribed_at",
+        description: "Timestamp when the user joined the mailing list",
+      },
+      {
+        name: "is_active",
+        description: "Boolean status indicating if the subscription is active",
+      },
+    ],
+  },
+  {
+    name: "SaaS Product Analytics",
+    cta: "Simulate user analytics data for dashboards or internal reports.",
+    tableName: "analytics",
+    columns: [
+      { name: "event_id", description: "Unique ID for each tracked event" },
+      {
+        name: "user_id",
+        description: "Identifier for the user performing the event",
+      },
+      {
+        name: "event_type",
+        description:
+          "Type of interaction such as 'Login', 'Button Click', 'Page Visit'",
+      },
+      {
+        name: "device",
+        description: "Device used - 'Mobile', 'Desktop', or 'Tablet'",
+      },
+      {
+        name: "browser",
+        description:
+          "Browser used during the event (e.g., Chrome, Safari, Firefox)",
+      },
+      {
+        name: "timestamp",
+        description: "Exact date and time of the recorded event",
+      },
+      {
+        name: "session_duration",
+        description: "Session duration in seconds for engagement metrics",
+      },
     ],
   },
 ];
